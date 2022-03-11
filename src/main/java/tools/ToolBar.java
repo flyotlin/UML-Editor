@@ -1,9 +1,6 @@
 package tools;
 
-import tools.button.AssociationBtn;
-import tools.button.BaseBtn;
-import tools.button.ClassBtn;
-import tools.button.SelectBtn;
+import tools.button.*;
 import tools.state.ButtonName;
 import tools.state.ToolBarState;
 
@@ -30,6 +27,9 @@ public class ToolBar {
         state.addButton(btn);
 
         btn = new ClassBtn();
+        state.addButton(btn);
+
+        btn = new UseCaseBtn();
         state.addButton(btn);
     }
 

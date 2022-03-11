@@ -35,7 +35,7 @@ public class Editor {
             // Attach to editor's main frame
             editor.getContentPane().add(BorderLayout.WEST, toolbar.getPanel());
             editor.getContentPane().add(BorderLayout.NORTH, menuBar);
-            editor.getContentPane().add(BorderLayout.CENTER, canvas.getCanvas());
+            editor.getContentPane().add(BorderLayout.CENTER, canvas);
 
             // Run editor(show)
             editor.setVisible(true);
