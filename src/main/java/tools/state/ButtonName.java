@@ -1,5 +1,0 @@
-package tools.state;
-
-public enum ButtonName {
-    SELECT_BTN, ASSOCIATION_BTN, GENERALIZATION_BTN, COMPOSITION_BTN, CLASS_BTN, USECASE_BTN, NULL_BTN
-}

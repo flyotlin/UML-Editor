@@ -1,8 +1,8 @@
 package delegate;
 
 import object.UseCase;
-import tools.ToolBar;
-import tools.state.ButtonName;
+import toolbar.Toolbar;
+import toolbar.Tools;
 
 import java.awt.event.MouseEvent;
 
@@ -22,7 +22,7 @@ public class UseCaseDelegate implements BaseDelegate {
 
     @Override
     public void released(MouseEvent e) {
-        if (ToolBar.state.getButtonNow() == ButtonName.SELECT_BTN) {
+        if (Toolbar.toolsNowSelected == Tools.SELECT) {
             UseCase label = (UseCase) e.getSource();
             label.setBounds(
                     label.getX() + (e.getX() - label.getOrigX()),

@@ -15,7 +15,7 @@ public class BaseMouseListener implements MouseListener {
             delegate = new ClassDelegate();
         } else if (name == "object.UseCase") {
             delegate = new UseCaseDelegate();
-        } else if (name == "canvas.Canvas") {
+        } else if (name == "object.Canvas") {
             delegate = new CanvasDelegate();
         }
     }

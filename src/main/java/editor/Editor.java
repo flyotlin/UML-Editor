@@ -1,8 +1,8 @@
 package editor;
 
-import canvas.Canvas;
+import object.Canvas;
 import menu.MenuBar;
-import tools.ToolBar;
+import toolbar.Toolbar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,7 @@ public class Editor {
             editor.setResizable(false);
 
             // Buttons
-            ToolBar toolbar = new ToolBar();
+            Toolbar toolbar = new Toolbar();
 
             // MenuBar
             JMenuBar menuBar = MenuBar.getMenuBar();
@@ -33,7 +33,7 @@ public class Editor {
             canvas.initCanvas(100, 100);
 
             // Attach to editor's main frame
-            editor.getContentPane().add(BorderLayout.WEST, toolbar.getPanel());
+            editor.getContentPane().add(BorderLayout.WEST, toolbar);
             editor.getContentPane().add(BorderLayout.NORTH, menuBar);
             editor.getContentPane().add(BorderLayout.CENTER, canvas);
 

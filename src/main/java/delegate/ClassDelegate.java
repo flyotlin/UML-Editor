@@ -1,10 +1,9 @@
 package delegate;
 
 import object.Class;
-import tools.ToolBar;
-import tools.state.ButtonName;
+import toolbar.Toolbar;
+import toolbar.Tools;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 
 public class ClassDelegate implements BaseDelegate {
@@ -23,7 +22,7 @@ public class ClassDelegate implements BaseDelegate {
 
     @Override
     public void released(MouseEvent e) {
-        if (ToolBar.state.getButtonNow() == ButtonName.SELECT_BTN) {
+        if (Toolbar.toolsNowSelected == Tools.SELECT) {
             Class label = (Class) e.getSource();
             label.setBounds(
                     label.getX() + (e.getX() - label.getOrigX()),
