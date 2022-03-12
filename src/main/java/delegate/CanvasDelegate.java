@@ -1,8 +1,8 @@
 package delegate;
 
-import object.Canvas;
-import object.Class;
-import object.UseCase;
+import object.canvas.Canvas;
+import object.label.Class;
+import object.label.UseCase;
 import toolbar.Toolbar;
 import toolbar.Tools;
 

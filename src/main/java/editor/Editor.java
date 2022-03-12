@@ -1,6 +1,6 @@
 package editor;
 
-import object.Canvas;
+import object.canvas.Canvas;
 import menu.MenuBar;
 import toolbar.Toolbar;
 

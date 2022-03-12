@@ -1,4 +1,4 @@
-package object;
+package object.line;
 
 public class BaseLine {
 }

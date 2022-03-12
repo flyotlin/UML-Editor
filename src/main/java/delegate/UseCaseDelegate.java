@@ -1,6 +1,6 @@
 package delegate;
 
-import object.UseCase;
+import object.label.UseCase;
 import toolbar.Toolbar;
 import toolbar.Tools;
 

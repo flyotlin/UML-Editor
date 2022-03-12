@@ -1,6 +1,6 @@
 package delegate;
 
-import object.Class;
+import object.label.Class;
 import toolbar.Toolbar;
 import toolbar.Tools;
 

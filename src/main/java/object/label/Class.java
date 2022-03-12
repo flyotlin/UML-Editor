@@ -1,6 +1,4 @@
-package object;
-
-import java.awt.*;
+package object.label;
 
 public class Class extends BaseLabel {
     public Class(String text, int x, int y, int w, int h) {

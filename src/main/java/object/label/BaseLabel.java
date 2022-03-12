@@ -1,6 +1,6 @@
-package object;
+package object.label;
 
-import delegate.BaseMouseListener;
+import object.BaseMouseListener;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
-package object;
+package object.canvas;
 
-import delegate.BaseMouseListener;
+import object.BaseMouseListener;
 
 import javax.swing.*;
 import java.awt.*;

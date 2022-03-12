@@ -1,4 +1,9 @@
-package delegate;
+package object;
+
+import delegate.BaseDelegate;
+import delegate.CanvasDelegate;
+import delegate.ClassDelegate;
+import delegate.UseCaseDelegate;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -11,11 +16,11 @@ public class BaseMouseListener implements MouseListener {
         Component c = (Component) e.getSource();
         String name = c.getClass().getName();
 
-        if (name == "object.Class") {
+        if (name == "object.label.Class") {
             delegate = new ClassDelegate();
-        } else if (name == "object.UseCase") {
+        } else if (name == "object.label.UseCase") {
             delegate = new UseCaseDelegate();
-        } else if (name == "object.Canvas") {
+        } else if (name == "object.canvas.Canvas") {
             delegate = new CanvasDelegate();
         }
     }

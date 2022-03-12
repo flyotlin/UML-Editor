@@ -1,4 +1,4 @@
-package object;
+package object.label;
 
 import java.awt.Color;
 import java.awt.Component;
