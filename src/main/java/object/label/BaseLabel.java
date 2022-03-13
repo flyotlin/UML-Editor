@@ -3,7 +3,10 @@ package object.label;
 import object.BaseMouseListener;
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class BaseLabel extends JLabel {
     private static Color backgroundColor = Color.YELLOW;
@@ -17,7 +20,6 @@ public class BaseLabel extends JLabel {
         this.setText(text);
         this.setBounds(x, y, w, h);
         this.setBackground(backgroundColor);
-        this.setBorder(BorderFactory.createLineBorder(borderColor));
 
         // MouseListener and MouseMotionListener
         // TODO: leave only one listener with all the functions
