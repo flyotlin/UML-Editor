@@ -41,4 +41,9 @@ public class CanvasDelegate implements BaseDelegate {
     public void released(MouseEvent e) {
 
     }
+
+    @Override
+    public void dragged(MouseEvent e) {
+
+    }
 }

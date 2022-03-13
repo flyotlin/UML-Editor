@@ -1,6 +1,5 @@
 package menu;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class MenuBar extends javax.swing.JMenuBar {

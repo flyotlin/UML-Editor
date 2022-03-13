@@ -32,4 +32,17 @@ public class ClassDelegate implements BaseDelegate {
             label.getParent().repaint();
         }
     }
+
+    @Override
+    public void dragged(MouseEvent e) {
+        if (Toolbar.toolsNowSelected == Tools.SELECT) {
+            Class label = (Class) e.getSource();
+            label.setBounds(
+                    label.getX() + (e.getX() - label.getOrigX()),
+                    label.getY()+ (e.getY() - label.getOrigY()),
+                    100, 100);
+            label.getParent().revalidate();
+            label.getParent().repaint();
+        }
+    }
 }

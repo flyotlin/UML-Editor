@@ -5,11 +5,11 @@ import delegate.CanvasDelegate;
 import delegate.ClassDelegate;
 import delegate.UseCaseDelegate;
 
+import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class BaseMouseListener implements MouseListener {
+public class BaseMouseListener implements MouseInputListener {
     BaseDelegate delegate;
 
     private void setDelegate(MouseEvent e) {
@@ -44,11 +44,19 @@ public class BaseMouseListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        this.setDelegate(e);
+        delegate.dragged(e);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
     }
 }

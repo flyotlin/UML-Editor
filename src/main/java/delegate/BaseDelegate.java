@@ -6,4 +6,5 @@ public interface BaseDelegate {
     public void click(MouseEvent e);
     public void pressed(MouseEvent e);
     public void released(MouseEvent e);
+    public void dragged(MouseEvent e);
 }

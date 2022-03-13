@@ -32,4 +32,17 @@ public class UseCaseDelegate implements BaseDelegate {
             label.getParent().repaint();
         }
     }
+
+    @Override
+    public void dragged(MouseEvent e) {
+        if (Toolbar.toolsNowSelected == Tools.SELECT) {
+            UseCase label = (UseCase) e.getSource();
+            label.setBounds(
+                    label.getX() + (e.getX() - label.getOrigX()),
+                    label.getY()+ (e.getY() - label.getOrigY()),
+                    100, 100);
+            label.getParent().revalidate();
+            label.getParent().repaint();
+        }
+    }
 }

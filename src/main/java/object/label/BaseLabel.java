@@ -18,7 +18,11 @@ public class BaseLabel extends JLabel {
         this.setBounds(x, y, w, h);
         this.setBackground(backgroundColor);
         this.setBorder(BorderFactory.createLineBorder(borderColor));
+
+        // MouseListener and MouseMotionListener
+        // TODO: leave only one listener with all the functions
         this.addMouseListener(new BaseMouseListener());
+        this.addMouseMotionListener(new BaseMouseListener());
     }
 
     public int getOrigX() {
