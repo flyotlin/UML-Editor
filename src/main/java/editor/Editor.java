@@ -2,6 +2,8 @@ package editor;
 
 import object.canvas.Canvas;
 import menu.MenuBar;
+import object.canvas.LineCanvas;
+import object.canvas.NewCanvas;
 import toolbar.Toolbar;
 
 import javax.swing.*;
@@ -29,12 +31,16 @@ public class Editor {
             JMenuBar menuBar = MenuBar.getMenuBar();
 
             // Canvas
-            canvas = new Canvas();
-            canvas.initCanvas(100, 100);
+
+//            canvas = new Canvas();
+//            canvas.initCanvas(100, 100);
+//            LineCanvas line_c = new LineCanvas();
+            NewCanvas canvas = new NewCanvas();
 
             // Attach to editor's main frame
             editor.getContentPane().add(BorderLayout.WEST, toolbar);
             editor.getContentPane().add(BorderLayout.NORTH, menuBar);
+//            editor.add(line_c);
             editor.getContentPane().add(BorderLayout.CENTER, canvas);
 
             // Run editor(show)
