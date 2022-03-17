@@ -4,6 +4,7 @@ import object.canvas.Canvas;
 import object.label.AnchorPoint;
 import object.label.BaseLabel;
 import object.label.Class;
+import object.line.BaseLine;
 import toolbar.Toolbar;
 import toolbar.Tools;
 
@@ -51,6 +52,9 @@ public class ClassDelegate implements BaseDelegate {
             label.add(p);
 
             // Why no revalidate and repaint?
+        } else if (Toolbar.toolsNowSelected == Tools.ASSOCIATION) {
+            System.out.println(e.getX() + " " + e.getY());
+            System.out.println("association pressed!!");
         }
         label.setOrigX(e.getX());
         label.setOrigY(e.getY());
@@ -66,6 +70,21 @@ public class ClassDelegate implements BaseDelegate {
                     100, 100);
             label.getParent().revalidate();
             label.getParent().repaint();
+        } else if (Toolbar.toolsNowSelected == Tools.ASSOCIATION) {
+            System.out.println("association released!!");
+            Class label = (Class) e.getSource();
+            System.out.println(label.getX() + " " + label.getY() + " " + label.getOrigX() + " " + label.getOrigY() + " " + e.getX() + " " + e.getY());
+            BaseLine line = new BaseLine(label.getOrigX(), label.getOrigY(), e.getX(), e.getY());
+            line.setBounds(
+                    label.getX()+label.getOrigX(),
+                    label.getY()+label.getOrigY(),
+                    Math.abs(e.getX()-label.getOrigX()),
+                    Math.abs(e.getY()-label.getOrigY()));
+            Canvas canvas = (Canvas) label.getParent();
+            canvas.add(line);
+
+            canvas.revalidate();
+            canvas.repaint();
         }
     }
 

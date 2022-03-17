@@ -53,7 +53,9 @@ public class CanvasDelegate implements BaseDelegate {
 
     @Override
     public void released(MouseEvent e) {
-
+        if (Toolbar.toolsNowSelected == Tools.ASSOCIATION) {
+            System.out.println("Canvas released!");
+        }
     }
 
     @Override
