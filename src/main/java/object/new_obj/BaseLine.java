@@ -1,10 +1,14 @@
 package object.new_obj;
 
+import toolbar.Toolbar;
+import toolbar.Tools;
+
 import java.awt.*;
 
-public class BaseLine {
+public abstract class BaseLine {
     public static int LineCount = 0;
     public String gid;
+    protected int arrowLen = 20;
 
     // Line的start及end point(以canvas座標)
     public Point start;
@@ -23,21 +27,19 @@ public class BaseLine {
         this.setGid();
     }
 
+    public static BaseLine LineFactory(int x1, int y1, int x2, int y2) {
+        if (Toolbar.toolsNowSelected == Tools.ASSOCIATION) {
+            return new AssociationLine(x1, y1, x2, y2);
+        } else if (Toolbar.toolsNowSelected == Tools.GENERALIZATION) {
+            return new GeneralizationLine(x1, y1, x2, y2);
+        } else if (Toolbar.toolsNowSelected == Tools.COMPOSITION) {
+            return new CompositionLine(x1, y1, x2, y2);
+        }
+        return null;
+    }
+
     public void drawLine(Graphics2D g2d) {
         g2d.drawLine(start.x, start.y, end.x, end.y);
-
-        double x = end.x - start.x;
-        double y = end.y - start.y;
-        double theta_1 = Math.atan(y/x) * (180.0 / Math.PI);
-        double alpha_1 = Math.toRadians(225+theta_1);
-        double alpha_2 = Math.toRadians(135+theta_1);
-        if (x >= 0) {
-            g2d.drawLine(end.x, end.y, (int) (end.x+10*Math.cos(alpha_1)), (int) (end.y+10*Math.sin(alpha_1)));
-            g2d.drawLine(end.x, end.y, (int) (end.x+10*Math.cos(alpha_2)), (int) (end.y+10*Math.sin(alpha_2)));
-        } else {
-            g2d.drawLine(end.x, end.y, (int) (end.x-10*Math.cos(alpha_1)), (int) (end.y-10*Math.sin(alpha_1)));
-            g2d.drawLine(end.x, end.y, (int) (end.x-10*Math.cos(alpha_2)), (int) (end.y-10*Math.sin(alpha_2)));
-        }
     }
 
     private void setGid() {

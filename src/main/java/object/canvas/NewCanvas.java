@@ -6,10 +6,12 @@ import toolbar.Tools;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class NewCanvas extends JPanel {
@@ -21,11 +23,12 @@ public class NewCanvas extends JPanel {
     private Point tempEnd = null;
 
     // selected object now
-    private UMLObject selectedObj;
+    private ArrayList<BaseObject> selectedObjs;
 
     public NewCanvas() {
         this.objects = new ArrayList<BaseObject>();
         this.lines = new ArrayList<BaseLine>();
+        this.selectedObjs = new ArrayList<BaseObject>();
         this.addMouseListener(new NewCanvasMouseListener(this, objects));
         this.addMouseMotionListener(new NewCanvasMouseMotionListener());
 
@@ -35,6 +38,7 @@ public class NewCanvas extends JPanel {
     }
 
     public void clearAllAnchorPoints() {
+        this.selectedObjs.clear();
         for (BaseObject obj : objects) {
             if (obj.isGroup) {
                 continue;
@@ -62,6 +66,29 @@ public class NewCanvas extends JPanel {
         this.add(obj);
         this.revalidate();
         this.repaint();
+    }
+
+    private void selectMultipleObjects() {
+        // TODO: 做一些處理把tempStart, tempEnd改成左上到右下
+
+        for (BaseObject obj : this.objects) {
+            int obj_x1 = obj.getX();
+            int obj_y1 = obj.getY();
+            int obj_x2 = obj_x1 + obj.getWidth();
+            int obj_y2 = obj_y1 + obj.getHeight();
+            if (obj_x1 < tempStart.x || obj_x2 > tempEnd.x) {
+                continue;
+            }
+            if (obj_y1 < tempStart.y || obj_y2 > tempEnd.y) {
+                continue;
+            }
+            this.selectedObjs.add(obj);
+        }
+        for (BaseObject obj : this.selectedObjs) {
+            if (obj instanceof UMLObject) {
+                ((UMLObject) obj).createAnchorPoints();
+            }
+        }
     }
 
     private UMLObject checkIsDestInUMLObject(UMLObject self, int x2, int y2) {
@@ -133,9 +160,9 @@ public class NewCanvas extends JPanel {
         g2d.setStroke(new BasicStroke(4));
 
         // draw temp line for animation
-        if (tempStart != null) {
-            g2d.drawLine(tempStart.x, tempStart.y, tempEnd.x, tempEnd.y);
-        }
+//        if (tempStart != null) {
+//            g2d.drawLine(tempStart.x, tempStart.y, tempEnd.x, tempEnd.y);
+//        }
 
         for (BaseLine l : this.lines) {
             l.drawLine(g2d);
@@ -159,6 +186,7 @@ public class NewCanvas extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            canvas.tempStart = e.getPoint();
             switch (Toolbar.toolsNowSelected) {
                 case SELECT:
                     canvas.clearAllAnchorPoints();
@@ -174,7 +202,14 @@ public class NewCanvas extends JPanel {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-
+            canvas.tempEnd = e.getPoint();
+            switch (Toolbar.toolsNowSelected) {
+                case SELECT:
+                    canvas.selectMultipleObjects();
+                    break;
+                default:
+                    break;
+            }
         }
 
         @Override

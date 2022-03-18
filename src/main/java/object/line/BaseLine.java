@@ -1,5 +1,10 @@
 package object.line;
 
+import object.new_obj.AssociationLine;
+import object.new_obj.GeneralizationLine;
+import toolbar.Toolbar;
+import toolbar.Tools;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -15,10 +20,10 @@ public class BaseLine extends JComponent {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
-        int dx = x2-x1;
-        int dy = y2-y1;
+        int dx = x2 - x1;
+        int dy = y2 - y1;
         double sum = Math.hypot(dx, dy);
-        this.setSize(new Dimension((int)sum, 4));
+        this.setSize(new Dimension((int) sum, 4));
     }
 
     @Override
