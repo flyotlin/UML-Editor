@@ -1,12 +1,11 @@
 package object.canvas;
 
-import object.new_obj.AnchorPoint;
-import object.new_obj.BaseObject;
-import object.new_obj.BaseLine;
-import object.new_obj.UMLObject;
+import object.new_obj.*;
 import toolbar.Toolbar;
+import toolbar.Tools;
 
 import javax.swing.*;
+import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,6 +19,9 @@ public class NewCanvas extends JPanel {
     // draw temp line(animation)
     private Point tempStart = null;
     private Point tempEnd = null;
+
+    // selected object now
+    private UMLObject selectedObj;
 
     public NewCanvas() {
         this.objects = new ArrayList<BaseObject>();
@@ -95,7 +97,8 @@ public class NewCanvas extends JPanel {
         // FIXME: 好像有點bug，end抓的位置怪怪的。另外，line太多會擋到label
         int[] s = start.decideLineCoord(start.lineOrigX, start.lineOrigY);
         int[] e = end.decideLineCoord(x-end.getX(), y-end.getY());
-        BaseLine line = new BaseLine(start.getX()+s[0], start.getY()+s[1], end.getX()+e[0],end.getY()+e[1]);
+
+        BaseLine line = BaseLine.LineFactory(start.getX()+s[0], start.getY()+s[1], end.getX()+e[0],end.getY()+e[1]);
 
         // keep record, this helps move objects
         line.startObj = start;

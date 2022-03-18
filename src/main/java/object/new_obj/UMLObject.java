@@ -167,6 +167,8 @@ public class UMLObject extends BaseObject {
                     obj.moveObject(e.getX(), e.getY(), UMLObject.objectWidth, UMLObject.objectHeight);
                     break;
                 case ASSOCIATION:
+                case GENERALIZATION:
+                case COMPOSITION:
                     canvas.createLine(obj, e.getX(), e.getY());
                     break;
                 default:
