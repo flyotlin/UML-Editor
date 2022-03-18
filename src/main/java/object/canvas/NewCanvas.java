@@ -5,7 +5,7 @@ import toolbar.Toolbar;
 import toolbar.Tools;
 
 import javax.swing.*;
-import javax.tools.Tool;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -50,8 +50,14 @@ public class NewCanvas extends JPanel {
     }
 
     // 只給Canvas呼叫，因為在空白處建立新Class，所以設為private
-    private void createClass(int x, int y) {
-        BaseObject obj = new UMLObject(x, y, this);
+    private void createUMLObject(int x, int y) {
+        Border border;
+        if (Toolbar.toolsNowSelected == Tools.CLASS) {
+            border = BorderFactory.createLineBorder(Color.BLACK);
+        } else {
+            border = new CircleBorder();
+        }
+        BaseObject obj = new UMLObject(x, y, this, border);
         objects.add(obj);
         this.add(obj);
         this.revalidate();
@@ -158,7 +164,8 @@ public class NewCanvas extends JPanel {
                     canvas.clearAllAnchorPoints();
                     break;
                 case CLASS:
-                    canvas.createClass(e.getX(), e.getY());
+                case USECASE:
+                    canvas.createUMLObject(e.getX(), e.getY());
                     break;
                 default:
                     break;

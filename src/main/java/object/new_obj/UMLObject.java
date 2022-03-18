@@ -3,6 +3,7 @@ package object.new_obj;
 import object.canvas.NewCanvas;
 import toolbar.Toolbar;
 
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -33,21 +34,22 @@ public class UMLObject extends BaseObject {
     public ArrayList<BaseLine> connectedStartLines;
     public ArrayList<BaseLine> connectedEndLines;
 
-    public UMLObject(int x, int y, NewCanvas canvas) {
+    public UMLObject(int x, int y, NewCanvas canvas, Border border) {
         super(x, y, objectWidth, objectHeight, bgColor, canvas);
-        this.init(this.gid);
+        this.init(this.gid, border);
     }
 
-    public UMLObject(int x, int y, String text, NewCanvas canvas) {
+    public UMLObject(int x, int y, String text, NewCanvas canvas, Border border) {
         super(x, y, objectWidth, objectHeight, bgColor, canvas);
-        this.init(text);
+        this.init(text, border);
     }
 
-    private void init(String text) {
+    private void init(String text, Border border) {
         this.anchorPoints = new ArrayList<AnchorPoint>();
         this.connectedStartLines = new ArrayList<BaseLine>();
         this.connectedEndLines = new ArrayList<BaseLine>();
         this.setText(text);
+        this.setBorder(border);
         this.addMouseListener(new UMLObjectMouseListener(canvas,this, anchorPoints));
         this.addMouseMotionListener(new UMLObjectMouseMotionListener(canvas, this));
     }
@@ -123,7 +125,7 @@ public class UMLObject extends BaseObject {
     @Override
     protected void setGid() {
         UMLObjCount++;
-        this.gid = "uml" + UMLObjCount;
+        this.gid = "uml_obj" + UMLObjCount;
     }
 
     class UMLObjectMouseListener implements MouseListener {
