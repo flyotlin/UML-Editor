@@ -1,10 +1,10 @@
-package object.Line;
+package canvas.line;
 
 import java.awt.*;
 
-public class AssociationLine extends BaseLine {
-    public AssociationLine(int x1, int y1, int x2, int y2) {
-        super(x1, y1, x2, y2);
+public class GeneralizationLine extends BaseLine {
+    public GeneralizationLine(Point head, Point tail) {
+        super(head, tail);
     }
 
     @Override
@@ -19,9 +19,11 @@ public class AssociationLine extends BaseLine {
         if (x >= 0) {
             g2d.drawLine(end.x, end.y, (int) (end.x+arrowLen*Math.cos(alpha_1)), (int) (end.y+arrowLen*Math.sin(alpha_1)));
             g2d.drawLine(end.x, end.y, (int) (end.x+arrowLen*Math.cos(alpha_2)), (int) (end.y+arrowLen*Math.sin(alpha_2)));
+            g2d.drawLine((int) (end.x+arrowLen*Math.cos(alpha_1)), (int) (end.y+arrowLen*Math.sin(alpha_1)), (int) (end.x+arrowLen*Math.cos(alpha_2)), (int) (end.y+arrowLen*Math.sin(alpha_2)));
         } else {
             g2d.drawLine(end.x, end.y, (int) (end.x-arrowLen*Math.cos(alpha_1)), (int) (end.y-arrowLen*Math.sin(alpha_1)));
             g2d.drawLine(end.x, end.y, (int) (end.x-arrowLen*Math.cos(alpha_2)), (int) (end.y-arrowLen*Math.sin(alpha_2)));
+            g2d.drawLine((int) (end.x-arrowLen*Math.cos(alpha_1)), (int) (end.y-arrowLen*Math.sin(alpha_1)), (int) (end.x-arrowLen*Math.cos(alpha_2)), (int) (end.y-arrowLen*Math.sin(alpha_2)));
         }
     }
 }

@@ -1,6 +1,6 @@
-package object.future.Line;
+package canvas.line;
 
-import object.future.Object.UMLObject;
+import canvas.object.UMLObject;
 import toolbar.Toolbar;
 import toolbar.Tools;
 

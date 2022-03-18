@@ -1,17 +1,9 @@
-package object.Object;
+package canvas.object;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import javax.swing.border.AbstractBorder;
+import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import javax.swing.border.AbstractBorder;
 
 /**
  * Reference: https://javafrontend.blogspot.com/2021/02/jlabel-circle.html
@@ -27,7 +19,7 @@ public class CircleBorder extends AbstractBorder{
         stroke = new BasicStroke(1);
         hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
     }
-    CircleBorder( Color color, int value) {
+    CircleBorder(Color color, int value) {
         this.color = color;
         stroke = new BasicStroke(value);
         hints = new RenderingHints(

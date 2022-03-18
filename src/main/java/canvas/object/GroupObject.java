@@ -1,8 +1,8 @@
-package object.future.Object;
+package canvas.object;
 
-import object.future.Canvas;
-import object.future.Handler.GroupObjectMouseListener;
-import object.future.Line.BaseLine;
+import canvas.Canvas;
+import canvas.line.BaseLine;
+import canvas.handler.GroupObjectMouseListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;

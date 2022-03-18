@@ -1,10 +1,10 @@
-package object.Line;
+package canvas.line;
 
 import java.awt.*;
 
 public class CompositionLine extends BaseLine {
-    public CompositionLine(int x1, int y1, int x2, int y2) {
-        super(x1, y1, x2, y2);
+    public CompositionLine(Point head, Point tail) {
+        super(head, tail);
     }
 
     @Override

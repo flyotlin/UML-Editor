@@ -1,7 +1,7 @@
-package object.future.Handler;
+package canvas.handler;
 
-import object.future.Canvas;
-import object.future.Object.GroupObject;
+import canvas.Canvas;
+import canvas.object.GroupObject;
 import toolbar.Toolbar;
 
 import java.awt.event.MouseEvent;

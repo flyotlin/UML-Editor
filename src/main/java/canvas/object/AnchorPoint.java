@@ -1,12 +1,14 @@
-package object.Object;
+package canvas.object;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class AnchorPoint extends JComponent {
     public static final int pointSize = 8;
-    public AnchorPoint() {
+
+    public AnchorPoint(Point p) {
         setSize(new Dimension(pointSize, pointSize));
+        this.setBounds(p.x, p.y, pointSize, pointSize);
     }
 
     @Override

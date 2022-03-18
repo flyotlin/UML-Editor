@@ -1,6 +1,6 @@
-package object.future.Handler;
+package canvas.handler;
 
-import object.future.Canvas;
+import canvas.Canvas;
 import toolbar.Toolbar;
 
 import java.awt.event.MouseEvent;

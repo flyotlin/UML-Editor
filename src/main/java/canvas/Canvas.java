@@ -1,8 +1,11 @@
-package object.future;
+package canvas;
 
-import object.future.Line.BaseLine;
-import object.future.Handler.CanvasMouseListener;
-import object.future.Object.*;
+import canvas.line.BaseLine;
+import canvas.handler.CanvasMouseListener;
+import canvas.object.BaseObject;
+import canvas.object.CircleBorder;
+import canvas.object.GroupObject;
+import canvas.object.UMLObject;
 import toolbar.Toolbar;
 import toolbar.Tools;
 

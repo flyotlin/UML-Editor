@@ -25,7 +25,7 @@ public class Editor {
             Toolbar toolbar = new Toolbar();
 
             // Canvas
-            object.future.Canvas canvas = new object.future.Canvas();
+            canvas.Canvas canvas = new canvas.Canvas();
 
             // MenuBar
             JMenuBar menuBar = new MenuBar(canvas);

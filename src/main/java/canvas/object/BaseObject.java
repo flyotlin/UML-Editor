@@ -1,6 +1,6 @@
-package object.future.Object;
+package canvas.object;
 
-import object.future.Canvas;
+import canvas.Canvas;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class BaseObject extends JLabel {
-    protected Canvas canvas;
+    protected canvas.Canvas canvas;
 
     // gid
     protected static int baseObjCount = 0;
