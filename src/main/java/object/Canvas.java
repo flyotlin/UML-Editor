@@ -1,20 +1,19 @@
-package object.canvas;
+package object;
 
-import object.new_obj.*;
+import object.Line.BaseLine;
+import object.Object.*;
 import toolbar.Toolbar;
 import toolbar.Tools;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.sql.Array;
 import java.util.ArrayList;
 
-public class NewCanvas extends JPanel {
+public class Canvas extends JPanel {
     public ArrayList<BaseObject> objects;
     public ArrayList<BaseLine> lines;
 
@@ -25,7 +24,7 @@ public class NewCanvas extends JPanel {
     // selected object now
     private ArrayList<BaseObject> selectedObjs;
 
-    public NewCanvas() {
+    public Canvas() {
         this.objects = new ArrayList<BaseObject>();
         this.lines = new ArrayList<BaseLine>();
         this.selectedObjs = new ArrayList<BaseObject>();
@@ -89,6 +88,20 @@ public class NewCanvas extends JPanel {
                 ((UMLObject) obj).createAnchorPoints();
             }
         }
+    }
+
+    public void groupObjects() {
+        if (selectedObjs.size() <= 1) {
+            return;
+        }
+        // TODO: 把tempStart, tempEnd換成左上到右下
+        Group g = new Group(
+                tempStart.x, tempStart.y,
+                tempEnd.x-tempStart.x, tempEnd.y- tempStart.y,
+                this, selectedObjs);
+        this.add(g);
+        this.revalidate();
+        this.repaint();
     }
 
     private UMLObject checkIsDestInUMLObject(UMLObject self, int x2, int y2) {
@@ -171,10 +184,10 @@ public class NewCanvas extends JPanel {
 
     class NewCanvasMouseListener implements MouseListener {
 
-        private NewCanvas canvas;
+        private Canvas canvas;
         private ArrayList<BaseObject> objects;
 
-        public NewCanvasMouseListener(NewCanvas canvas, ArrayList<BaseObject> objects) {
+        public NewCanvasMouseListener(Canvas canvas, ArrayList<BaseObject> objects) {
             this.canvas = canvas;
             this.objects = objects;
         }

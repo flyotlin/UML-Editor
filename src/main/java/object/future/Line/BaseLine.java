@@ -1,5 +1,6 @@
-package object.new_obj;
+package object.future.Line;
 
+import object.future.Object.UMLObject;
 import toolbar.Toolbar;
 import toolbar.Tools;
 
@@ -21,19 +22,19 @@ public abstract class BaseLine {
     // layer
     public int layer;
 
-    public BaseLine(int x1, int y1, int x2, int y2) {
-        start = new Point(x1, y1);
-        end = new Point(x2, y2);
+    public BaseLine(Point head, Point tail) {
+        start = head;
+        end = tail;
         this.setGid();
     }
 
-    public static BaseLine LineFactory(int x1, int y1, int x2, int y2) {
+    public static BaseLine LineFactory(Point head, Point tail) {
         if (Toolbar.toolsNowSelected == Tools.ASSOCIATION) {
-            return new AssociationLine(x1, y1, x2, y2);
+            return new AssociationLine(head, tail);
         } else if (Toolbar.toolsNowSelected == Tools.GENERALIZATION) {
-            return new GeneralizationLine(x1, y1, x2, y2);
+            return new GeneralizationLine(head, tail);
         } else if (Toolbar.toolsNowSelected == Tools.COMPOSITION) {
-            return new CompositionLine(x1, y1, x2, y2);
+            return new CompositionLine(head, tail);
         }
         return null;
     }

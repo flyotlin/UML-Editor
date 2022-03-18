@@ -1,4 +1,4 @@
-package object.new_obj;
+package object.Line;
 
 import java.awt.*;
 

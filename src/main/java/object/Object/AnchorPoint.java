@@ -1,4 +1,4 @@
-package object.new_obj;
+package object.Object;
 
 import javax.swing.*;
 import java.awt.*;

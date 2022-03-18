@@ -1,6 +1,7 @@
-package object.new_obj;
+package object.Object;
 
-import object.canvas.NewCanvas;
+import object.Line.BaseLine;
+import object.Canvas;
 import toolbar.Toolbar;
 
 import javax.swing.border.Border;
@@ -34,12 +35,20 @@ public class UMLObject extends BaseObject {
     public ArrayList<BaseLine> connectedStartLines;
     public ArrayList<BaseLine> connectedEndLines;
 
-    public UMLObject(int x, int y, NewCanvas canvas, Border border) {
+    // Mouse Listeners
+    MouseListener umlML;
+    MouseMotionListener umlMML;
+
+    public UMLObject(int x, int y, int w, int h, object.Canvas canvas) {
+        super(x, y, w, h, null, canvas);
+    }
+
+    public UMLObject(int x, int y, object.Canvas canvas, Border border) {
         super(x, y, objectWidth, objectHeight, bgColor, canvas);
         this.init(this.gid, border);
     }
 
-    public UMLObject(int x, int y, String text, NewCanvas canvas, Border border) {
+    public UMLObject(int x, int y, String text, object.Canvas canvas, Border border) {
         super(x, y, objectWidth, objectHeight, bgColor, canvas);
         this.init(text, border);
     }
@@ -50,8 +59,22 @@ public class UMLObject extends BaseObject {
         this.connectedEndLines = new ArrayList<BaseLine>();
         this.setText(text);
         this.setBorder(border);
-        this.addMouseListener(new UMLObjectMouseListener(canvas,this, anchorPoints));
-        this.addMouseMotionListener(new UMLObjectMouseMotionListener(canvas, this));
+
+        this.umlML = new UMLObjectMouseListener(canvas,this, anchorPoints);
+        this.umlMML = new UMLObjectMouseMotionListener(canvas, this);
+//        this.switchListener(true);
+        this.addMouseListener(umlML);
+        this.addMouseMotionListener(umlMML);
+    }
+
+    public void switchListener(boolean turnOn) {
+        if (turnOn) {
+            this.removeMouseListener(umlML);
+            this.removeMouseMotionListener(umlMML);
+        } else {
+            this.addMouseListener(umlML);
+            this.addMouseMotionListener(umlMML);
+        }
     }
 
     public void createAnchorPoints() {
@@ -130,11 +153,11 @@ public class UMLObject extends BaseObject {
 
     class UMLObjectMouseListener implements MouseListener {
 
-        private NewCanvas canvas;
+        private object.Canvas canvas;
         private UMLObject obj;
         private ArrayList<AnchorPoint> anchorPoints;
 
-        public UMLObjectMouseListener(NewCanvas canvas, UMLObject obj, ArrayList<AnchorPoint> anchorPoints) {
+        public UMLObjectMouseListener(object.Canvas canvas, UMLObject obj, ArrayList<AnchorPoint> anchorPoints) {
             this.canvas = canvas;
             this.obj = obj;
             this.anchorPoints = anchorPoints;
@@ -191,10 +214,10 @@ public class UMLObject extends BaseObject {
 
     class UMLObjectMouseMotionListener implements MouseMotionListener {
 
-        private NewCanvas canvas;
+        private object.Canvas canvas;
         private UMLObject obj;
 
-        public UMLObjectMouseMotionListener(NewCanvas canvas, UMLObject obj) {
+        public UMLObjectMouseMotionListener(Canvas canvas, UMLObject obj) {
             this.canvas = canvas;
             this.obj = obj;
         }

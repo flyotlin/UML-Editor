@@ -1,9 +1,6 @@
 package editor;
 
-import object.canvas.Canvas;
 import menu.MenuBar;
-import object.canvas.LineCanvas;
-import object.canvas.NewCanvas;
 import toolbar.Toolbar;
 
 import javax.swing.*;
@@ -16,7 +13,7 @@ public class Editor {
     private static String EDITOR_NAME = "UML Editor";
 
     private static JFrame editor;   // editor.Editor Main JFrame
-    private static Canvas canvas;
+    private static java.awt.Canvas canvas;
 
     public static void run(int frameWidth, int frameHeight) {
         if (editor == null) {
@@ -24,32 +21,22 @@ public class Editor {
             editor.setSize(frameWidth, frameHeight);
             editor.setResizable(false);
 
-            // Buttons
+            // Toolbar
             Toolbar toolbar = new Toolbar();
 
-            // MenuBar
-            JMenuBar menuBar = MenuBar.getMenuBar();
-
             // Canvas
+            object.future.Canvas canvas = new object.future.Canvas();
 
-//            canvas = new Canvas();
-//            canvas.initCanvas(100, 100);
-//            LineCanvas line_c = new LineCanvas();
-            NewCanvas canvas = new NewCanvas();
+            // MenuBar
+            JMenuBar menuBar = new MenuBar(canvas);
 
             // Attach to editor's main frame
             editor.getContentPane().add(BorderLayout.WEST, toolbar);
             editor.getContentPane().add(BorderLayout.NORTH, menuBar);
-//            editor.add(line_c);
             editor.getContentPane().add(BorderLayout.CENTER, canvas);
 
             // Run editor(show)
             editor.setVisible(true);
         }
-    }
-
-    public static void repaint() {
-        editor.repaint();
-
     }
 }

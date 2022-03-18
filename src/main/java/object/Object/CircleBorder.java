@@ -1,4 +1,4 @@
-package object.new_obj;
+package object.Object;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -12,6 +12,10 @@ import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import javax.swing.border.AbstractBorder;
+
+/**
+ * Reference: https://javafrontend.blogspot.com/2021/02/jlabel-circle.html
+ */
 
 public class CircleBorder extends AbstractBorder{
     private final Color color;

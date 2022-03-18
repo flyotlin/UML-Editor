@@ -1,15 +1,14 @@
-package object.new_obj;
+package object.Object;
 
-import object.canvas.NewCanvas;
+import object.Canvas;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public abstract class BaseObject extends JLabel  {
     String gid = "";
     public Boolean isGroup = false;
-    NewCanvas canvas;
+    Canvas canvas;
 
     // layer
     public int layer;
@@ -18,7 +17,7 @@ public abstract class BaseObject extends JLabel  {
     public int origX;
     public int origY;
 
-    public BaseObject(int x, int y, int w, int h, Color bgColor, NewCanvas canvas) {
+    public BaseObject(int x, int y, int w, int h, Color bgColor, Canvas canvas) {
         this.setOpaque(true);
         this.setBounds(x, y, w, h);
         this.setBackground(bgColor);
