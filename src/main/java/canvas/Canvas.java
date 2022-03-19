@@ -162,6 +162,17 @@ public class Canvas extends JPanel {
         }
     }
 
+    public void renameUMLObject(String newName) {
+        if (newName.equals(""))
+            return;
+        if (selectedObjects.size() != 1)
+            return;
+        if (selectedObjects.get(0) instanceof GroupObject)
+            return;
+        UMLObject obj = (UMLObject) selectedObjects.get(0);
+        obj.setText(newName);
+    }
+
     /**
      * Clear AnchorPoints of all UMLObjects in canvas.
      */

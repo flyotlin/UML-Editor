@@ -31,12 +31,19 @@ public class MenuBar extends javax.swing.JMenuBar {
         ungroupItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("UNGROUP!");
                 canvas.removeGroupObject();
             }
         });
 
         JMenuItem renameItem = new JMenuItem("Change Object Name");
+        renameItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = JOptionPane.showInputDialog(canvas, "New UMLObject Name:", null);
+                canvas.renameUMLObject(name);
+            }
+        });
+
         JMenu editMenu = new JMenu("Edit");
         editMenu.add(groupItem);
         editMenu.add(ungroupItem);
