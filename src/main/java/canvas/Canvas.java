@@ -163,7 +163,7 @@ public class Canvas extends JPanel {
     }
 
     public void renameUMLObject(String newName) {
-        if (newName.equals(""))
+        if ( newName == null || newName.equals(""))
             return;
         if (selectedObjects.size() != 1)
             return;
@@ -231,17 +231,4 @@ public class Canvas extends JPanel {
         }
         return null;
     }
-
-    /**
-     * x clearAllAnchorPoints
-     * x createUMLObject
-     * selectMultipleObjects
-     * x groupObjects
-     * ungroupObjects
-     * x isLineDestInUMLObject
-     * x toCanvasCoordinate
-     * x createLine
-     * x createUMLObject
-     * x paint
-     */
 }

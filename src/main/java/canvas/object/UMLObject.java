@@ -107,7 +107,7 @@ public class UMLObject extends BaseObject {
     }
 
     /**
-     * Decide which anchor point's position that line connected to.
+     * Decide which anchor point the line connected to.
      * @param p     the position that line connected to the UMLObject(Canvas Coordinate)
      * @return      the position of the to-be-connected anchor point(in UMLCoordinate)
      */
@@ -120,13 +120,13 @@ public class UMLObject extends BaseObject {
         int w = getWidth();
         int h = getHeight();
         double slope = h/((double) w);
-        boolean cond_1 = (p.y - (slope * p.x) >= 0) ? true : false;
-        boolean cond_2 = (p.y + (slope * p.x-w) >= 0) ? true : false;
+        boolean cond_1 = p.y - (slope * p.x) >= 0;
+        boolean cond_2 = p.y + (slope * p.x - w) >= 0;
         Point[] apPos = new Point[]{
                 new Point(w/2-size/2, 0),       // top
                 new Point(w/2-size/2, h-size),  // bottom
                 new Point(0, h/2-size/2),       // left
-                new Point(w/size, h/2-size/2)   // right
+                new Point(w-size, h/2-size/2)   // right
         };
         if (cond_1 && cond_2) {
             return apPos[1];    // bottom
