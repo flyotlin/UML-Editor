@@ -4,7 +4,9 @@ import canvas.Canvas;
 import canvas.line.BaseLine;
 import canvas.handler.UMLObjectMouseListener;
 
+import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -37,12 +39,30 @@ public class UMLObject extends BaseObject {
         this.turnOnMouseListener(true);
 
         // Set default text for UMLObject
-        this.setText("UMLObject " + baseObjCount);
+        if (border instanceof LineBorder) {
+            this.setText("<html><p style='padding-top: 10px;'>" + "UMLObject " + baseObjCount + "</p></html>");
+        } else {
+            this.setText("UMLObject " + baseObjCount);
+        }
 
         // Initialize ArrayLists
         this.anchorPoints = new ArrayList<AnchorPoint>();
         this.headLines = new ArrayList<BaseLine>();
         this.tailLines = new ArrayList<BaseLine>();
+
+        if (border instanceof LineBorder) {
+            this.setVerticalAlignment(SwingConstants.TOP);
+
+            JSeparator sep = new JSeparator();
+            sep.setBounds(0, 40, 120, 120);
+            sep.setForeground(Color.BLACK);
+            this.add(sep);
+
+            sep = new JSeparator();
+            sep.setBounds(0, 80, 120, 120);
+            sep.setForeground(Color.BLACK);
+            this.add(sep);
+        }
     }
 
     @Override
