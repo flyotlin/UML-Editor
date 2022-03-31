@@ -123,7 +123,11 @@ public class Canvas extends JPanel {
             return;
         }
 
-        GroupObject g = new GroupObject(this, selectedObjects, pressedPos, releasedPos.x-pressedPos.x, releasedPos.y-pressedPos.y);
+        Point[] points = getTopLeft2BottomRightPoints();
+        Point topLeft = points[0];
+        Point bottomRight = points[1];
+
+        GroupObject g = new GroupObject(this, selectedObjects, topLeft, bottomRight.x-topLeft.x, bottomRight.y-topLeft.y);
         this.objects.add(g);
         this.add(g);
         this.revalidate();
@@ -148,13 +152,16 @@ public class Canvas extends JPanel {
 
     public void selectMultipleObjects() {
         // TODO: 做一些處理把tempStart, tempEnd改成左上到右下
+        Point[] points = getTopLeft2BottomRightPoints();
+        Point topLeft = points[0];
+        Point bottomRight = points[1];
 
         for (BaseObject obj : this.objects) {
             Point p1 = new Point(obj.getX(), obj.getY());
             Point p2 = new Point(p1.x+obj.getWidth(), p1.y+obj.getHeight());
-            if (p1.x < pressedPos.x || p2.x > releasedPos.x)
+            if (p1.x < topLeft.x || p2.x > bottomRight.x)
                 continue;
-            if (p1.y < pressedPos.y || p2.y > releasedPos.y)
+            if (p1.y < topLeft.y || p2.y > bottomRight.y)
                 continue;
             this.selectedObjects.add(obj);
             if (obj instanceof UMLObject)
@@ -230,5 +237,35 @@ public class Canvas extends JPanel {
             return (UMLObject) obj;
         }
         return null;
+    }
+
+    /**
+     * Convert releasedPos and pressedPos to Point topLeft and Point bottomRight.
+     * <br><br>
+     * Used in selectMultipleObject and createGroupObject.
+     * <br><br>
+     * When a bunch of objects selected, pressed point and released point might not be from top-left to bottom-right, so this method helps the conversion.
+     * <br>
+     * @return Point[]  an Point array consisting of Point topLeft and Point bottomRight.
+     */
+    private Point[] getTopLeft2BottomRightPoints() {
+        Point topLeft = new Point();
+        Point bottomRight = new Point();
+        int orig_dx, orig_dy, dx, dy;
+
+        orig_dx = releasedPos.x - pressedPos.x;
+        orig_dy = releasedPos.y - pressedPos.y;
+        dx = Math.abs(orig_dx);
+        dy = Math.abs(orig_dy);
+        topLeft.setLocation(
+                pressedPos.x + ((orig_dx < 0) ? orig_dx : 0),
+                pressedPos.y + ((orig_dy < 0) ? orig_dy : 0)
+        );
+        bottomRight.setLocation(
+                topLeft.x + dx,
+                topLeft.y + dy
+        );
+
+        return new Point[] {topLeft, bottomRight};
     }
 }
