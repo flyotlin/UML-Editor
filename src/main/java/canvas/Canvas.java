@@ -141,6 +141,7 @@ public class Canvas extends JPanel {
             return;
         ((GroupObject) selectedObjects.get(0)).removeSelectedObjectsFromGroup();
         this.remove(selectedObjects.get(0));
+        this.objects.remove(selectedObjects.get(0));
         this.selectedObjects.clear();
         this.revalidate();
         this.repaint();
