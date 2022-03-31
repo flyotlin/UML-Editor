@@ -11,6 +11,8 @@ public class ToolButton extends JButton {
         this.toolsName = tool;
         this.setText(tool.name());
         this.setOpaque(true);
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
         this.addMouseListener(new BaseButtonMouseListener());
     }
 
