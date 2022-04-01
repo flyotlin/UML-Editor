@@ -98,6 +98,7 @@ public class GroupObject extends BaseObject {
             obj.setBounds(this.getX()+obj.getX(), this.getY()+obj.getY(), obj.getWidth(), obj.getHeight());
             this.remove(obj);
             canvas.add(obj);
+            canvas.objects.add(obj);
         }
         for (BaseLine line : this.lines) {
             line.contain = line.previousContain;

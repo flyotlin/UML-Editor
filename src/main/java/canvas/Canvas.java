@@ -22,7 +22,7 @@ public class Canvas extends JPanel {
     private final static int canvasHeight = 100;
 
     // holds both UMLObject and GroupObject
-    private ArrayList<BaseObject> objects;
+    public ArrayList<BaseObject> objects;
     // holds all lines
     private ArrayList<BaseLine> lines;
     // selected BaseObjects now
@@ -128,6 +128,12 @@ public class Canvas extends JPanel {
         Point bottomRight = points[1];
 
         GroupObject g = new GroupObject(this, selectedObjects, topLeft, bottomRight.x-topLeft.x, bottomRight.y-topLeft.y);
+        for (BaseObject obj : selectedObjects) {
+            this.objects.remove(obj);
+            if (obj instanceof UMLObject) {
+                ((UMLObject) obj).removeAnchorPoints();
+            }
+        }
         this.objects.add(g);
         this.add(g);
         this.revalidate();
