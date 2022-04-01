@@ -19,6 +19,14 @@ public abstract class BaseLine {
     public UMLObject startObj;
     public UMLObject endObj;
 
+    // Line partly or completely contained in GroupObject
+    // -1: not contained in GroupObject
+    // 0: completely contained in GroupObject
+    // 1: only head contained in GroupObject
+    // 2: only tail contained in GroupObject
+    public int contain = -1;
+    public int previousContain = -1;
+
     // layer
     public int layer;
 

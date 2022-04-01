@@ -56,10 +56,14 @@ public class GroupObject extends BaseObject {
         int dx = newPos.x-origPos.x;
         int dy = newPos.y-origPos.y;
         for (BaseLine line : this.lines) {
-            line.start.x += dx;
-            line.start.y += dy;
-            line.end.x += dx;
-            line.end.y += dy;
+            if (line.contain == 0 || line.contain == 1) {
+                line.start.x += dx;
+                line.start.y += dy;
+            }
+            if (line.contain == 0 || line.contain == 2) {
+                line.end.x += dx;
+                line.end.y += dy;
+            }
         }
         canvas.revalidate();
         canvas.repaint();
@@ -95,6 +99,9 @@ public class GroupObject extends BaseObject {
             this.remove(obj);
             canvas.add(obj);
         }
+        for (BaseLine line : this.lines) {
+            line.contain = line.previousContain;
+        }
     }
 
     /**
@@ -104,10 +111,24 @@ public class GroupObject extends BaseObject {
      */
     private void addContainedLinesToGroup() {
         for (BaseLine line : canvas.getCanvasLines()) {
-            if (line.start.x < getX() || line.end.x > getX()+getWidth())
+            boolean headContained = false, tailContained = false;
+            if (line.start.x >= getX() && line.start.y >= getY()
+                && line.start.x <= getX()+getWidth() && line.start.y <= getY()+getHeight())
+                headContained = true;
+            if (line.end.x >= getX() && line.end.y >= getY()
+                    && line.end.x <= getX()+getWidth() && line.end.y <= getY()+getHeight())
+                tailContained = true;
+            if (!headContained && !tailContained) {
                 continue;
-            if (line.start.y < getY() || line.end.y > getY()+getHeight())
-                continue;
+            }
+            line.previousContain = line.contain;
+            if (headContained && tailContained) {
+                line.contain = 0;
+            } else if (headContained) {
+                line.contain = 1;
+            } else {
+                line.contain = 2;
+            }
             this.lines.add(line);
         }
     }
