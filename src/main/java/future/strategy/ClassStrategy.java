@@ -7,28 +7,18 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class ClassStrategy implements CanvasStrategy {
-    private boolean isOriginInAnyShape = false;
-    private boolean isDestinationInAnyShape = false;
-
     @Override
     public void mousePressed(MouseEvent e) {
-        isOriginInAnyShape = Canvas.getInstance().isOriginInAnyShape();
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        Canvas canvas = Canvas.getInstance();
-        isDestinationInAnyShape = canvas.isDestinationInAnyShape();
-
-        if (isOriginInAnyShape || isDestinationInAnyShape) {
-            return;
-        }
-
-        if ((canvas.getOrigin().x != canvas.getDestination().x) || (canvas.getOrigin().y != canvas.getDestination().y)) {
+        boolean isOriginInAnyShape = Canvas.getInstance().isOriginInAnyShape();
+        if (isOriginInAnyShape) {
             return;
         }
 
         createClassInCanvas(e.getPoint());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
     }
 
     @Override
