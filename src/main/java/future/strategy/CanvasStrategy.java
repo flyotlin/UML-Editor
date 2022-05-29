@@ -1,4 +1,4 @@
-package future.canvas.strategy;
+package future.strategy;
 
 import java.awt.event.MouseEvent;
 

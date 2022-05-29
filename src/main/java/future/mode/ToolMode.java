@@ -1,4 +1,4 @@
-package future.toolbar.mode;
+package future.mode;
 
 public abstract class ToolMode {
     private final String name;

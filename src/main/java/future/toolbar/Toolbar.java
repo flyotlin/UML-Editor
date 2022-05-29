@@ -1,8 +1,8 @@
 package future.toolbar;
 
-import future.toolbar.mode.AssociationMode;
-import future.toolbar.mode.ClassMode;
-import future.toolbar.mode.SelectMode;
+import future.mode.AssociationMode;
+import future.mode.ClassMode;
+import future.mode.SelectMode;
 
 import javax.swing.*;
 import java.awt.*;

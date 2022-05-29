@@ -1,7 +1,7 @@
-package future.toolbar.mode;
+package future.mode;
 
 import future.canvas.Canvas;
-import future.canvas.strategy.SelectStrategy;
+import future.strategy.SelectStrategy;
 
 public class SelectMode extends ToolMode {
     public SelectMode() {

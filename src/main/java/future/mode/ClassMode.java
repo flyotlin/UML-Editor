@@ -1,7 +1,7 @@
-package future.toolbar.mode;
+package future.mode;
 
 import future.canvas.Canvas;
-import future.canvas.strategy.ClassStrategy;
+import future.strategy.ClassStrategy;
 
 public class ClassMode extends ToolMode {
     public ClassMode() {

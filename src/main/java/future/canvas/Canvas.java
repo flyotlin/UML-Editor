@@ -1,7 +1,7 @@
 package future.canvas;
 
 import future.canvas.shapes.Shape;
-import future.canvas.strategy.CanvasStrategy;
+import future.strategy.CanvasStrategy;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package future.toolbar;
 
-import future.toolbar.mode.ToolMode;
+import future.mode.ToolMode;
 
 import javax.swing.*;
 import java.awt.*;

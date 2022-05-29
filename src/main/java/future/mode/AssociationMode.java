@@ -1,7 +1,7 @@
-package future.toolbar.mode;
+package future.mode;
 
 import future.canvas.Canvas;
-import future.canvas.strategy.AssociationStrategy;
+import future.strategy.AssociationStrategy;
 
 public class AssociationMode extends ToolMode {
     public AssociationMode() {
