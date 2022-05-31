@@ -6,7 +6,7 @@ import future.canvas.shapes.AssociationLine;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class AssociationStrategy implements BaseStrategy {
+public class CreateLineStrategy implements BaseStrategy {
     @Override
     public void mousePressed(MouseEvent e) {
 

@@ -1,7 +1,7 @@
 package future.mode;
 
 import future.canvas.Canvas;
-import future.strategy.AssociationStrategy;
+import future.strategy.CreateLineStrategy;
 
 public class AssociationMode extends ToolMode {
     public AssociationMode() {
@@ -11,6 +11,6 @@ public class AssociationMode extends ToolMode {
     @Override
     public void changeCanvasStrategy() {
         super.changeCanvasStrategy();
-        Canvas.getInstance().setStrategy(new AssociationStrategy());
+        Canvas.getInstance().setStrategy(new CreateLineStrategy());
     }
 }
