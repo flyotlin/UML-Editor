@@ -1,12 +1,19 @@
 package future.strategy;
 
 import future.canvas.Canvas;
-import future.canvas.shapes.AssociationLine;
+import future.canvas.shapes.BaseLine;
+import future.factory.BaseLineFactory;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class CreateLineStrategy implements BaseStrategy {
+    private final BaseLineFactory factory;
+
+    public CreateLineStrategy(BaseLineFactory factory) {
+        this.factory = factory;
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -27,7 +34,7 @@ public class CreateLineStrategy implements BaseStrategy {
         if (canvas.areTwoPointsInSameShape(origin, destination)) {
             return;
         }
-        createAssociationLine(origin, destination);
+        createBaseLineInCanvas(origin, destination);
     }
 
     @Override
@@ -35,9 +42,9 @@ public class CreateLineStrategy implements BaseStrategy {
 
     }
 
-    private void createAssociationLine(Point origin, Point destination) {
+    private void createBaseLineInCanvas(Point origin, Point destination) {
         Canvas canvas = Canvas.getInstance();
-        AssociationLine line = new AssociationLine(origin, destination);
+        BaseLine line = factory.createBaseLine(origin, destination);
         canvas.add(line);
     }
 }
