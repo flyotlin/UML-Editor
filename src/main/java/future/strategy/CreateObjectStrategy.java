@@ -6,7 +6,7 @@ import future.canvas.shapes.Class;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class ClassStrategy implements BaseStrategy {
+public class CreateObjectStrategy implements BaseStrategy {
     @Override
     public void mousePressed(MouseEvent e) {
         createClassInCanvas(e.getPoint());
