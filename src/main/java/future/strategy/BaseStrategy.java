@@ -2,7 +2,7 @@ package future.strategy;
 
 import java.awt.event.MouseEvent;
 
-public interface CanvasStrategy {
+public interface BaseStrategy {
     void mousePressed(MouseEvent e);
 
     void mouseReleased(MouseEvent e);

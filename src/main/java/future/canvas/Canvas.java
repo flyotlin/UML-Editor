@@ -1,7 +1,7 @@
 package future.canvas;
 
 import future.canvas.shapes.Shape;
-import future.strategy.CanvasStrategy;
+import future.strategy.BaseStrategy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +11,10 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
-    private static Canvas canvas;
     private final static Dimension canvasSize = new Dimension(100, 100);
-
-    private CanvasStrategy strategy;
-    private ArrayList<Shape> shapes;
+    private static Canvas canvas;
+    private final ArrayList<Shape> shapes;
+    private BaseStrategy strategy;
     private Point origin;
     private Point destination;
 
@@ -39,7 +38,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         return canvas;
     }
 
-    public void setStrategy(CanvasStrategy strategy) {
+    public void setStrategy(BaseStrategy strategy) {
         this.strategy = strategy;
     }
 
@@ -59,25 +58,28 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         destination = p;
     }
 
-    private boolean isPointInAnyShape(Point p) {
+    public ArrayList<Shape> getShapes() {
+        return shapes;
+    }
+
+    public Shape getCanvasShapeByPoint(Point p) {
         for (Shape shape : shapes) {
-            if (p.x < shape.getX() || p.x > (shape.getX() + shape.getWidth())) {
-                continue;
+            if (shape.isPointInShape(p)) {
+                return shape;
             }
-            if (p.y < shape.getY() || p.y > (shape.getY() + shape.getHeight())) {
-                continue;
-            }
-            return true;
         }
-        return false;
+        return null;
     }
 
-    public boolean isOriginInAnyShape() {
-        return isPointInAnyShape(origin);
+    public boolean isPointInAnyCanvasShape(Point p) {
+        Shape shape = getCanvasShapeByPoint(p);
+        return shape != null;
     }
 
-    public boolean isDestinationInAnyShape() {
-        return isPointInAnyShape(destination);
+    public boolean areTwoPointsInSameShape(Point p1, Point p2) {
+        Shape s1 = getCanvasShapeByPoint(p1);
+        Shape s2 = getCanvasShapeByPoint(p2);
+        return s1 == s2;
     }
 
     @Override
@@ -92,9 +94,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
     public void mousePressed(MouseEvent e) {
         saveOriginPoint(e.getPoint());
         strategy.mousePressed(e);
@@ -107,17 +106,24 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
-    @Override
     public void mouseDragged(MouseEvent e) {
         saveDestinationPoint(e.getPoint());
         strategy.mouseDragged(e);
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+    }
 }

@@ -6,14 +6,9 @@ import future.canvas.shapes.Class;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class ClassStrategy implements CanvasStrategy {
+public class ClassStrategy implements BaseStrategy {
     @Override
     public void mousePressed(MouseEvent e) {
-        boolean isOriginInAnyShape = Canvas.getInstance().isOriginInAnyShape();
-        if (isOriginInAnyShape) {
-            return;
-        }
-
         createClassInCanvas(e.getPoint());
     }
 
