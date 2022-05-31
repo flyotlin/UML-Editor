@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
     private final static Dimension canvasSize = new Dimension(100, 100);
     private static Canvas canvas;
-    private final ArrayList<Shape> shapes;
+    private ArrayList<Shape> shapes;
+    private ArrayList<Shape> selectedShapes = new ArrayList<>();
     private BaseStrategy strategy;
     private Point origin;
     private Point destination;
@@ -80,6 +81,16 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         Shape s1 = getCanvasShapeByPoint(p1);
         Shape s2 = getCanvasShapeByPoint(p2);
         return s1 == s2;
+    }
+
+    public void select(Shape shape) {
+        selectedShapes.add(shape);
+        shape.select();
+    }
+
+    public void unselect(Shape shape) {
+        selectedShapes.remove(shape);
+        shape.unselect();
     }
 
     @Override

@@ -27,6 +27,7 @@ public class SelectStrategy implements BaseStrategy {
          * - 從 empty 出發
          *      - multiple select
          */
+        unselectAllShapes();
         if (canvas.isPointInAnyCanvasShape(origin)) {
             if (canvas.getCanvasShapeByPoint(origin) == canvas.getCanvasShapeByPoint(destination)) {
                 selectSingle(destination);
@@ -44,28 +45,18 @@ public class SelectStrategy implements BaseStrategy {
     }
 
     private void selectSingle(Point p) {
-        unselectAllShapes();
-        selectOneShape(p);
-    }
-
-    private void selectMultiple(Point origin, Point destination) {
-        unselectAllShapes();
-        selectMultipleShapes(origin, destination);
-    }
-
-    private void selectOneShape(Point p) {
         Canvas canvas = Canvas.getInstance();
         Shape selectedShape = canvas.getCanvasShapeByPoint(p);
         if (selectedShape != null) {
-            selectedShape.select();
+            canvas.select(selectedShape);
         }
     }
 
-    private void selectMultipleShapes(Point origin, Point destination) {
+    private void selectMultiple(Point origin, Point destination) {
         ArrayList<Shape> shapes = Canvas.getInstance().getShapes();
         for (Shape shape : shapes) {
             if (isShapeInsideOriginAndDestination(shape, origin, destination)) {
-                shape.select();
+                Canvas.getInstance().select(shape);
             }
         }
     }
@@ -73,7 +64,7 @@ public class SelectStrategy implements BaseStrategy {
     private void unselectAllShapes() {
         ArrayList<Shape> shapes = Canvas.getInstance().getShapes();
         for (Shape shape : shapes) {
-            shape.unselect();
+            Canvas.getInstance().unselect(shape);
         }
     }
 
