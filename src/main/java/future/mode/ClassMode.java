@@ -1,6 +1,7 @@
 package future.mode;
 
 import future.canvas.Canvas;
+import future.factory.ClassFactory;
 import future.strategy.CreateObjectStrategy;
 
 public class ClassMode extends ToolMode {
@@ -10,6 +11,6 @@ public class ClassMode extends ToolMode {
 
     @Override
     public void changeCanvasStrategy() {
-        Canvas.getInstance().setStrategy(new CreateObjectStrategy());
+        Canvas.getInstance().setStrategy(new CreateObjectStrategy(new ClassFactory()));
     }
 }
