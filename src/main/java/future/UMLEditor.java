@@ -1,6 +1,7 @@
 package future;
 
 import future.canvas.Canvas;
+import future.menubar.MenuBar;
 import future.toolbar.Toolbar;
 
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class UMLEditor {
          */
         frame.getContentPane().add(BorderLayout.WEST, Toolbar.getInstance());
         frame.getContentPane().add(BorderLayout.CENTER, Canvas.getInstance());
+        frame.getContentPane().add(BorderLayout.NORTH, MenuBar.getInstance());
     }
 
     public static UMLEditor getInstance() {
