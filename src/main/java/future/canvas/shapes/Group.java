@@ -48,6 +48,9 @@ public class Group extends Shape {
     public void hideConnectionPorts() {}
 
     @Override
+    public void setText(String text) {}
+
+    @Override
     public boolean isPointInShape(Point p) {
         if (p.x < this.getX() || p.x > (this.getX() + this.getWidth())) {
             return false;

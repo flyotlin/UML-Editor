@@ -4,6 +4,7 @@ import future.canvas.Canvas;
 import future.canvas.shapes.Group;
 import future.canvas.shapes.Shape;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -50,6 +51,14 @@ public class EditActions {
     }
 
     public void rename() {
-        System.out.println("rename");
+        Canvas canvas = Canvas.getInstance();
+        ArrayList<Shape> selectedShapes = canvas.getSelectedShapes();
+        if (selectedShapes.size() != 1) {
+            return;
+        }
+
+        Shape selectedShape = selectedShapes.get(0);
+        String name = JOptionPane.showInputDialog(canvas, "New UMLObject Name:", null);
+        selectedShape.setText(name);
     }
 }
