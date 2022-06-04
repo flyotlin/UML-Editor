@@ -31,6 +31,11 @@ public class BaseObject extends Shape {
     }
 
     @Override
+    public void ungroup() {
+
+    }
+
+    @Override
     public boolean isPointInShape(Point p) {
         if (p.x < this.getX() || p.x > (this.getX() + this.getWidth())) {
             return false;
@@ -48,14 +53,14 @@ public class BaseObject extends Shape {
         }
     }
 
-    private void showConnectionPorts() {
+    public void showConnectionPorts() {
         initializeConnectionPorts(true);
         setConnectionPortsVisibility(true);
         this.revalidate();
         this.repaint();
     }
 
-    private void hideConnectionPorts() {
+    public void hideConnectionPorts() {
         setConnectionPortsVisibility(false);
     }
 

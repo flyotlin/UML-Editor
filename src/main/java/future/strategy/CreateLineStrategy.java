@@ -25,6 +25,7 @@ public class CreateLineStrategy implements BaseStrategy {
         Point origin = canvas.getOrigin();
         Point destination = canvas.getDestination();
 
+        // TODO: create line on group object?
         if (!canvas.isPointInAnyCanvasShape(origin)) {
             return;
         }

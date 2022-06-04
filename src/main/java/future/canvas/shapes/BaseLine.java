@@ -44,6 +44,11 @@ public class BaseLine extends Shape {
     }
 
     @Override
+    public void ungroup() {
+
+    }
+
+    @Override
     public boolean isPointInShape(Point p) {
         return false;
     }

@@ -63,6 +63,10 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         return shapes;
     }
 
+    public ArrayList<Shape> getSelectedShapes() {
+        return selectedShapes;
+    }
+
     public Shape getCanvasShapeByPoint(Point p) {
         for (Shape shape : shapes) {
             if (shape.isPointInShape(p)) {
@@ -102,6 +106,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         super.repaint();
 
         return returnComp;
+    }
+
+    @Override
+    public void remove(Component comp) {
+        this.shapes.remove(comp);
+        this.selectedShapes.remove(comp);
+        super.remove(comp);
     }
 
     @Override
