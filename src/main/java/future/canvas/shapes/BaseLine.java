@@ -29,24 +29,19 @@ public class BaseLine extends Shape {
     }
 
     @Override
-    public void select() {
-
-    }
+    public void select() {}
 
     @Override
-    public void unselect() {
-
-    }
+    public void unselect() {}
 
     @Override
-    public void move() {
-
-    }
+    public void move() {}
 
     @Override
-    public void ungroup() {
+    public void ungroup() {}
 
-    }
+    @Override
+    public void hideConnectionPorts() {}
 
     @Override
     public boolean isPointInShape(Point p) {
@@ -65,9 +60,7 @@ public class BaseLine extends Shape {
         g.drawLine(lineOrigin.x, lineOrigin.y, lineDestination.x, lineDestination.y);
     }
 
-    protected void drawArrow(Graphics g) {
-
-    }
+    protected void drawArrow(Graphics g) {}
 
     private void initConnectionPort(Point origin, Point destination) {
         Canvas canvas = Canvas.getInstance();

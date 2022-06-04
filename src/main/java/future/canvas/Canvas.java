@@ -1,5 +1,6 @@
 package future.canvas;
 
+import future.canvas.shapes.Group;
 import future.canvas.shapes.Shape;
 import future.strategy.BaseStrategy;
 
@@ -85,6 +86,11 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
         Shape s1 = getCanvasShapeByPoint(p1);
         Shape s2 = getCanvasShapeByPoint(p2);
         return s1 == s2;
+    }
+
+    public boolean isPointInGroup(Point p) {
+        Shape shape = getCanvasShapeByPoint(p);
+        return shape instanceof Group;
     }
 
     public void select(Shape shape) {

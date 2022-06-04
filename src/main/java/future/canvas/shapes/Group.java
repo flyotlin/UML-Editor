@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-// TODO: Group 繼承 BaseObject 或許不是太好?
-// 原本是希望可以直接用 BaseObject 的 constructor，但變得有點怪怪的
-public class Group extends BaseObject {
+public class Group extends Shape {
     private ArrayList<Shape> shapesInGroup = new ArrayList<>();
 
     public Group(Point origin, Point destination, ArrayList<Shape> selectedShapes) {
-        super(origin);
+        this.setOpaque(true);
+        this.setLayout(null);
+
         this.setBorder(BorderFactory.createDashedBorder(Color.RED, 3, 4, 3, true));
         this.setBounds(origin, destination);
 
@@ -20,9 +20,13 @@ public class Group extends BaseObject {
     }
 
     @Override
-    public void select() {
-        // Left empty on purpose
-    }
+    public void select() {}
+
+    @Override
+    public void unselect() {}
+
+    @Override
+    public void move() {}
 
     private void group(ArrayList<Shape> selectedShapes) {
         setShapesInGroup(selectedShapes);
@@ -38,6 +42,17 @@ public class Group extends BaseObject {
             canvas.add(shape);
         }
         canvas.remove(this);
+    }
+
+    @Override
+    public void hideConnectionPorts() {}
+
+    @Override
+    public boolean isPointInShape(Point p) {
+        if (p.x < this.getX() || p.x > (this.getX() + this.getWidth())) {
+            return false;
+        }
+        return p.y >= this.getY() && p.y <= (this.getY() + this.getHeight());
     }
 
     @Override
@@ -64,9 +79,8 @@ public class Group extends BaseObject {
 
     private void addShapesInGroupToGroup() {
         for (Shape shape : shapesInGroup) {
-            // TODO: Is there a better solution here?
             resetShapeBoundsToGroup(shape);
-            ((BaseObject) shape).hideConnectionPorts();
+            shape.hideConnectionPorts();
             this.add(shape);
         }
     }

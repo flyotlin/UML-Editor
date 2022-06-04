@@ -28,7 +28,6 @@ public class EditActions {
     }
 
     public void group() {
-        System.out.println("group");
         Canvas canvas = Canvas.getInstance();
         ArrayList<Shape> selectedShapes = canvas.getSelectedShapes();
 
@@ -40,7 +39,6 @@ public class EditActions {
     }
 
     public void ungroup() {
-        System.out.println("ungroup");
         Canvas canvas = Canvas.getInstance();
         ArrayList<Shape> selectedShapes = canvas.getSelectedShapes();
 

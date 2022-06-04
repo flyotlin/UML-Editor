@@ -12,6 +12,8 @@ public abstract class Shape extends JPanel {
 
     public abstract void ungroup();
 
+    public abstract void hideConnectionPorts();
+
     public abstract boolean isPointInShape(Point p);
 
     public abstract ConnectionPort getConnectionPortByPoint(Point p);

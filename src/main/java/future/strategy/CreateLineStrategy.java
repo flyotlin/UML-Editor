@@ -15,9 +15,7 @@ public class CreateLineStrategy implements BaseStrategy {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -25,11 +23,13 @@ public class CreateLineStrategy implements BaseStrategy {
         Point origin = canvas.getOrigin();
         Point destination = canvas.getDestination();
 
-        // TODO: create line on group object?
         if (!canvas.isPointInAnyCanvasShape(origin)) {
             return;
         }
         if (!canvas.isPointInAnyCanvasShape(destination)) {
+            return;
+        }
+        if (canvas.isPointInGroup(origin) || canvas.isPointInGroup(destination)) {
             return;
         }
         if (canvas.areTwoPointsInSameShape(origin, destination)) {
@@ -39,9 +39,7 @@ public class CreateLineStrategy implements BaseStrategy {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     private void createBaseLineInCanvas(Point origin, Point destination) {
         Canvas canvas = Canvas.getInstance();
