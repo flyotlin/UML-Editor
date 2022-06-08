@@ -2,6 +2,7 @@ package future.canvas.shapes;
 
 import future.canvas.Canvas;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class BaseLine extends Shape {
@@ -14,7 +15,7 @@ public class BaseLine extends Shape {
 
     public BaseLine(Point origin, Point destination) {
         initConnectionPort(origin, destination);
-        initLineOriginDestination(origin, destination);
+        setLineOriginDestination();
 
         this.setOpaque(false);
         this.setVisible(true);
@@ -35,7 +36,13 @@ public class BaseLine extends Shape {
     public void unselect() {}
 
     @Override
-    public void move() {}
+    public void move(Point newPos) {}
+
+    public void move() {
+        setLineOriginDestination();
+        revalidate();
+        repaint();
+    }
 
     @Override
     public void ungroup() {}
@@ -76,12 +83,10 @@ public class BaseLine extends Shape {
         this.destinationPort.addLine(this);
     }
 
-    private void initLineOriginDestination(Point origin, Point destination) {
+    private void setLineOriginDestination() {
         Canvas canvas = Canvas.getInstance();
-        Shape originShape = canvas.getCanvasShapeByPoint(origin);
-        Shape destinationShape = canvas.getCanvasShapeByPoint(destination);
 
-        this.lineOrigin = new Point(originShape.getX() + originPort.getX(), originShape.getY() + originPort.getY());
-        this.lineDestination = new Point(destinationShape.getX() + destinationPort.getX(), destinationShape.getY() + destinationPort.getY());
+        this.lineOrigin = SwingUtilities.convertPoint(originPort.getParent(), originPort.getLocation(), canvas);
+        this.lineDestination = SwingUtilities.convertPoint(destinationPort.getParent(), destinationPort.getLocation(), canvas);
     }
 }

@@ -27,13 +27,15 @@ public class BaseObject extends Shape {
     }
 
     @Override
-    public void move() {
+    public void move(Point newPos) {
+        this.setBounds(newPos.x, newPos.y, getWidth(), getHeight());
+        for (ConnectionPort port : connectionPorts) {
+            port.move();
+        }
     }
 
     @Override
-    public void ungroup() {
-
-    }
+    public void ungroup() {}
 
     @Override
     public boolean isPointInShape(Point p) {
@@ -84,10 +86,10 @@ public class BaseObject extends Shape {
         int w = this.getWidth();
         int h = this.getHeight();
 
-        ConnectionPort top = new ConnectionPort(new Point(w / 2 - size / 2, 0), this);
-        ConnectionPort bottom = new ConnectionPort(new Point(w / 2 - size / 2, h - size), this);
-        ConnectionPort left = new ConnectionPort(new Point(0, h / 2 - size / 2), this);
-        ConnectionPort right = new ConnectionPort(new Point(w - size, h / 2 - size / 2), this);
+        ConnectionPort top = new ConnectionPort(new Point(w / 2 - size / 2, 0));
+        ConnectionPort bottom = new ConnectionPort(new Point(w / 2 - size / 2, h - size));
+        ConnectionPort left = new ConnectionPort(new Point(0, h / 2 - size / 2));
+        ConnectionPort right = new ConnectionPort(new Point(w - size, h / 2 - size / 2));
 
         ArrayList<ConnectionPort> ports = new ArrayList<>();
         addConnectionPort(top, ports);

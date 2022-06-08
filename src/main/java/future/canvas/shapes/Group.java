@@ -26,7 +26,12 @@ public class Group extends Shape {
     public void unselect() {}
 
     @Override
-    public void move() {}
+    public void move(Point newPos) {
+        this.setBounds(newPos.x, newPos.y, getWidth(), getHeight());
+        for (Shape shape : shapesInGroup) {
+            shape.move(shape.getLocation());
+        }
+    }
 
     private void group(ArrayList<Shape> selectedShapes) {
         setShapesInGroup(selectedShapes);

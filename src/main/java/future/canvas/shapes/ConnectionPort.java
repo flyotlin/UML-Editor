@@ -7,19 +7,14 @@ import java.util.ArrayList;
 public class ConnectionPort extends JComponent {
     public static final Dimension pointSize = new Dimension(8, 8);
 
-    private final Shape shape;
-    private ArrayList<BaseLine> lines;
+    private ArrayList<BaseLine> lines = new ArrayList<>();
 
-    public ConnectionPort(Point origin, Shape shape) {
-        this.shape = shape;
+    public ConnectionPort(Point origin) {
         setSize(pointSize);
         this.setBounds(origin.x, origin.y, pointSize.width, pointSize.height);
     }
 
     public void addLine(BaseLine line) {
-        if (lines == null) {
-            lines = new ArrayList<BaseLine>();
-        }
         this.lines.add(line);
     }
 
@@ -35,5 +30,11 @@ public class ConnectionPort extends JComponent {
         g2d.setPaint(Color.BLACK);
         g2d.setStroke(new BasicStroke(2));
         g2d.fillRect(0, 0, pointSize.width, pointSize.height);
+    }
+
+    public void move() {
+        for (BaseLine line : lines) {
+            line.move();
+        }
     }
 }

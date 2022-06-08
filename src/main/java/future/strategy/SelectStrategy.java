@@ -19,30 +19,17 @@ public class SelectStrategy implements BaseStrategy {
         Point origin = canvas.getOrigin();
         Point destination = canvas.getDestination();
 
-        /**
-         * 以 Select 而言：
-         * - 從 shape 出發
-         *      - single select
-         *      - move
-         * - 從 empty 出發
-         *      - multiple select
-         */
         unselectAllShapes();
         if (canvas.isPointInAnyCanvasShape(origin)) {
-            if (canvas.getCanvasShapeByPoint(origin) == canvas.getCanvasShapeByPoint(destination)) {
-                selectSingle(destination);
-            } else {
-//                moveShape(destination);
-            }
+            selectSingle(destination);
+            moveShape(origin, destination);
         } else {
             selectMultiple(origin, destination);
         }
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     private void selectSingle(Point p) {
         Canvas canvas = Canvas.getInstance();
@@ -70,5 +57,12 @@ public class SelectStrategy implements BaseStrategy {
 
     private boolean isShapeInsideOriginAndDestination(Shape shape, Point origin, Point destination) {
         return (shape.getX() >= origin.x) && (shape.getX() + shape.getWidth() <= destination.x) && (shape.getY() >= origin.y) && (shape.getY() + shape.getHeight() <= destination.y);
+    }
+
+    private void moveShape(Point origin, Point destination) {
+        Canvas canvas = Canvas.getInstance();
+        Shape shape = canvas.getCanvasShapeByPoint(origin);
+        Point delta = new Point(destination.x - origin.x, destination.y - origin.y);
+        shape.move(new Point(shape.getX() + delta.x, shape.getY() + delta.y));
     }
 }

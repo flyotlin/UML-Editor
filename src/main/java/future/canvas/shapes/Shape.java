@@ -8,7 +8,7 @@ public abstract class Shape extends JPanel {
 
     public abstract void unselect();
 
-    public abstract void move();
+    public abstract void move(Point newPos);
 
     public abstract void ungroup();
 
