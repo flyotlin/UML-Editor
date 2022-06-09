@@ -18,7 +18,7 @@ public class Toolbar extends JPanel {
         this.add(new ToolButton(new GeneralizationMode()));
         this.add(new ToolButton(new CompositionMode()));
         this.add(new ToolButton(new ClassMode()));
-//        this.add(new ToolButton(new UseCaseMode()));
+        this.add(new ToolButton(new UseCaseMode()));
 
         ToolButton selectButton = this.buttons.get(0);
         selectButton.setBackground(true);

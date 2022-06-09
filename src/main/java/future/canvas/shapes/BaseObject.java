@@ -48,7 +48,7 @@ public class BaseObject extends Shape {
     public void setText(String text) {
         if (this.text == null) {
             this.text = new JLabel(text);
-            this.text.setBounds(0, 0, 40, 40);
+            this.text.setBounds(40, 18, 80, 80);
             this.add(this.text);
         } else {
             this.text.setText(text);
