@@ -10,8 +10,8 @@ public class BaseLine extends Shape {
     private ConnectionPort destinationPort;
 
     // Line 可以視為一個跟 Canvas 一樣大小的畫布，透過 Point origin, Point destination 在此巨大畫布上畫出 Line
-    private Point lineOrigin;
-    private Point lineDestination;
+    protected Point lineOrigin;
+    protected Point lineDestination;
 
     public BaseLine(Point origin, Point destination) {
         initConnectionPort(origin, destination);

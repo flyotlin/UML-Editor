@@ -1,8 +1,6 @@
 package future.toolbar;
 
-import future.mode.AssociationMode;
-import future.mode.ClassMode;
-import future.mode.SelectMode;
+import future.mode.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,8 +15,8 @@ public class Toolbar extends JPanel {
 
         this.add(new ToolButton(new SelectMode()));
         this.add(new ToolButton(new AssociationMode()));
-//        this.add(new ToolButton(new GeneralizationMode()));
-//        this.add(new ToolButton(new CompositionMode()));
+        this.add(new ToolButton(new GeneralizationMode()));
+        this.add(new ToolButton(new CompositionMode()));
         this.add(new ToolButton(new ClassMode()));
 //        this.add(new ToolButton(new UseCaseMode()));
 
