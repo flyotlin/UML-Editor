@@ -59,6 +59,8 @@ public class EditActions {
 
         Shape selectedShape = selectedShapes.get(0);
         String name = JOptionPane.showInputDialog(canvas, "New UMLObject Name:", null);
-        selectedShape.setText(name);
+        if (name != null) {
+            selectedShape.setText(name);
+        }
     }
 }
